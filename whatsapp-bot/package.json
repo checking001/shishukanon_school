@@ -1,0 +1,17 @@
+{
+  "name": "shishu-kanon-whatsapp-bot",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0",
+    "pino": "^9.5.0",
+    "qrcode": "^1.5.4"
+  }
+}
