@@ -116,6 +116,7 @@ Google Sheet/Drive-এ ঢুকবে, আপনার ব্যক্তিগ
    **Continue** তারপর **Done** চাপুন — এগুলো আমাদের লাগবে না।
 5. তালিকায় আপনার নতুন service account দেখা যাবে — এর ইমেইলটা কপি করে রাখুন,
    দেখতে এমন হবে: `shishu-kanon-app@shishu-kanon-xxxxx.iam.gserviceaccount.com`
+   shishu-kanon-app@shishu-kanon.iam.gserviceaccount.com
 6. সেই service account-এর নামের উপর ক্লিক করুন → উপরে **Keys** ট্যাবে যান।
 7. **Add Key → Create new key** → Key type-এ **JSON** সিলেক্ট করা আছে কিনা দেখে **Create**।
 8. একটা `.json` ফাইল ডাউনলোড হয়ে যাবে — **এই ফাইলটা যত্ন করে রাখুন, এটা দ্বিতীয়বার
@@ -147,6 +148,7 @@ Service account শুধু ওই সব Sheet/ফোল্ডারে ঢু
    ```
    https://drive.google.com/drive/folders/এই-অংশটাই-Folder-ID
    ```
+   https://drive.google.com/drive/folders/1-3rxoH7MBIhlgkP_17fYQeERVrWhuIGx
 
 ---
 
