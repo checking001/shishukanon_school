@@ -1,38 +1,21 @@
-# Dependencies / Node Modules (সবচেয়ে গুরুত্বপূর্ণ, এটি কখনো গিটহাব-এ দেবেন না)
-/node_modules
-/.pnpm
-/.yarn
+# Dependencies
+node_modules/
 
-# Environment & Secret variables (API Key, Database URL, Secret Key ইত্যাদি গোপন রাখতে)
+# Environment secrets — never commit real credentials
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
 
-# Build & Output Folders (React/Next.js/Vue এর বিল্ড ফোল্ডার)
-/build
-/dist
-/.next/
-/.out/
+# Build output
+web/dist/
+dist/
 
-# IDE & Editor Configs (VS Code বা অন্যান্য এডিটরের নিজস্ব ফাইল)
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.swp
-
-# OS Generated Files (Windows বা Mac এর নিজস্ব টেম্পোরারি ফাইল)
+# Editor/OS junk
 .DS_Store
 Thumbs.db
-desktop.ini
+.vscode/
+.idea/
 
-# Logs & Debugging Files
+# Logs
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-logs/
 *.log
