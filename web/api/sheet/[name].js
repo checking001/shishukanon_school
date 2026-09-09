@@ -1,5 +1,5 @@
-import { readTable, appendRow } from '../lib/sheetDB.js'
-import { requireAuth } from '../lib/auth.js'
+import { readTable, appendRow } from '../_lib/sheetDB.js'
+import { requireAuth } from '../_lib/auth.js'
 
 function computeId (name, body) {
   const ts =

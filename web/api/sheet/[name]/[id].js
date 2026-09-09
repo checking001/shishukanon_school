@@ -1,5 +1,5 @@
-import { updateRow, deleteRow } from '../../lib/sheetDB.js'
-import { requireAuth } from '../../lib/auth.js'
+import { updateRow, deleteRow } from '../../_lib/sheetDB.js'
+import { requireAuth } from '../../_lib/auth.js'
 
 export default async function handler (req, res) {
   const user = requireAuth(req, res)

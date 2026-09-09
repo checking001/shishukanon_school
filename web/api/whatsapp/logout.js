@@ -1,5 +1,5 @@
-import { requireAuth } from '../lib/auth.js'
-import { callBot } from '../lib/bot.js'
+import { requireAuth } from '../_lib/auth.js'
+import { callBot } from '../_lib/bot.js'
 
 export default async function handler (req, res) {
   if (req.method !== 'POST')

@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
-import { readTable, appendRow, updateRow } from '../lib/sheetDB.js'
-import { requireAuth } from '../lib/auth.js'
+import { readTable, appendRow, updateRow } from '../_lib/sheetDB.js'
+import { requireAuth } from '../_lib/auth.js'
 
 export default async function handler (req, res) {
   if (req.method !== 'POST')
