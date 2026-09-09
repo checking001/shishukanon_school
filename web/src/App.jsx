@@ -81,8 +81,8 @@ function AppShell () {
               borderTop: '1px solid #e7ebf0'
             }}
           >
-            © 2025 শিশু কানন মডেল একাডেমি | মিরওয়ারিশপুর, বেগমগঞ্জ, নোয়াখালী |
-            Developed with ❤️ for Shishu Kanon
+            © 2026 শিশু কানন মডেল একাডেমি | মিরওয়ারিশপুর, বেগমগঞ্জ, নোয়াখালী |
+            Developed by shishu kanon (Shamim & Faysal)
           </footer>
         </main>
       </div>
