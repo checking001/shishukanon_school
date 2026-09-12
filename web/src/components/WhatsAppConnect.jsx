@@ -6,17 +6,24 @@ export default function WhatsAppConnect () {
   const [number, setNumber] = useState(null)
   const [qr, setQr] = useState(null)
   const [connecting, setConnecting] = useState(false)
+  const [checking, setChecking] = useState(false)
+  const [errorDetail, setErrorDetail] = useState('')
   const pollRef = useRef(null)
 
   async function refreshStatus () {
+    setChecking(true)
     try {
       const data = await api.get('/whatsapp/status')
       setNumber(data.number || null)
       setStatus(data.connected ? 'connected' : 'disconnected')
+      setErrorDetail('')
       return data.connected
-    } catch {
+    } catch (err) {
       setStatus('unreachable')
+      setErrorDetail(err.message || '')
       return false
+    } finally {
+      setChecking(false)
     }
   }
 
@@ -41,10 +48,11 @@ export default function WhatsAppConnect () {
         } else if (data.qrDataUrl) {
           setQr(data.qrDataUrl)
         }
-      } catch {
+      } catch (err) {
         clearInterval(pollRef.current)
         setConnecting(false)
         setStatus('unreachable')
+        setErrorDetail(err.message || '')
       }
     }, 3000)
   }
@@ -71,8 +79,9 @@ export default function WhatsAppConnect () {
     }
   }
 
-  if (status === 'loading')
+  if (status === 'loading') {
     return <p className='muted'>WhatsApp সংযোগের অবস্থা দেখা হচ্ছে…</p>
+  }
 
   if (status === 'unreachable') {
     return (
@@ -83,8 +92,13 @@ export default function WhatsAppConnect () {
           <code> WHATSAPP_BOT_URL</code>/<code>WHATSAPP_BOT_SECRET</code>{' '}
           ঠিকভাবে বসানো আছে কিনা দেখুন।
         </p>
-        <button className='btn' onClick={refreshStatus}>
-          🔄 আবার চেষ্টা করুন
+        {errorDetail && (
+          <p className='muted' style={{ fontSize: 12 }}>
+            বিস্তারিত: {errorDetail}
+          </p>
+        )}
+        <button className='btn' onClick={refreshStatus} disabled={checking}>
+          {checking ? '⏳ চেষ্টা করা হচ্ছে…' : '🔄 আবার চেষ্টা করুন'}
         </button>
       </div>
     )
