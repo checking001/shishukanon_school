@@ -102,7 +102,18 @@ function requireSecret (req, res, next) {
   const auth = req.headers.authorization || ''
   const bearer = auth.startsWith('Bearer ') ? auth.slice(7) : null
   const key = req.query.key || req.headers['x-bot-secret'] || bearer
-  if (key !== BOT_SECRET) return res.status(401).send('Unauthorized')
+  if (key !== BOT_SECRET) {
+    logger.warn(
+      {
+        received: JSON.stringify(key),
+        receivedLength: key ? key.length : 0,
+        expected: JSON.stringify(BOT_SECRET),
+        expectedLength: BOT_SECRET ? BOT_SECRET.length : 0
+      },
+      'secret mismatch'
+    )
+    return res.status(401).send('Unauthorized')
+  }
   next()
 }
 
