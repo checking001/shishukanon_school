@@ -24,11 +24,12 @@ export async function callBot (path, { method = 'GET', body } = {}) {
     e.status = 502
     throw e
   }
-  const data = await res.json().catch(() => ({}))
+    const text = await res.text();
+  let data = {};
+  try { data = JSON.parse(text); } catch { /* বট থেকে JSON না এসে plain text এলেও যেন ধরতে পারি */ }
   if (!res.ok) {
-    const err = new Error(data.error || 'বট থেকে সাড়া পাওয়া যায়নি')
-    err.status = res.status
-    throw err
+    const err = new Error(data.error || text || 'বট থেকে সাড়া পাওয়া যায়নি');
+    err.status = res.status;
+    throw err;
   }
-  return data
-}
+  return data;
