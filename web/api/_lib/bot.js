@@ -1,3 +1,5 @@
+// সব WhatsApp bot API call একই জায়গা থেকে যায়, যাতে URL/secret/error handling
+// প্রতিটা রুটে আলাদা করে লিখতে না হয়।
 export async function callBot (path, { method = 'GET', body } = {}) {
   const botUrl = process.env.WHATSAPP_BOT_URL
   const botSecret = process.env.WHATSAPP_BOT_SECRET
@@ -8,6 +10,7 @@ export async function callBot (path, { method = 'GET', body } = {}) {
     err.status = 503
     throw err
   }
+
   let res
   try {
     res = await fetch(`${botUrl}${path}`, {
@@ -24,12 +27,18 @@ export async function callBot (path, { method = 'GET', body } = {}) {
     e.status = 502
     throw e
   }
-    const text = await res.text();
-  let data = {};
-  try { data = JSON.parse(text); } catch { /* বট থেকে JSON না এসে plain text এলেও যেন ধরতে পারি */ }
-  if (!res.ok) {
-    const err = new Error(data.error || text || 'বট থেকে সাড়া পাওয়া যায়নি');
-    err.status = res.status;
-    throw err;
+
+  const text = await res.text()
+  let data = {}
+  try {
+    data = JSON.parse(text)
+  } catch {
+    /* বট থেকে JSON না এসে plain text এলেও যেন ধরতে পারি */
   }
-  return data;
+  if (!res.ok) {
+    const err = new Error(data.error || text || 'বট থেকে সাড়া পাওয়া যায়নি')
+    err.status = res.status
+    throw err
+  }
+  return data
+}
